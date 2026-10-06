@@ -43,5 +43,17 @@ One-time setup:
   loading loop sheet and the player ship sprite, drawn live by
   `title-logo.js` - a port of the game's `ui/title_logo.gd`. Re-copy them
   if the game's title is rebaked.
+- From the game repo, copied as-is:
+  - `fonts/`: Silkscreen (headings, buttons) and VT323 (the game's panel
+    font), SIL OFL 1.1 - their licences are in `licenses/`.
+  - `img/icons/`, `img/features/`: UI glyphs from `ui/icons/`.
+  - `img/ships/`: hull sprites from `player/` and `spacecraft/ships/`,
+    drawn at 2 CSS px per texel so every hull shares one scale.
+  - `img/favicon.png`: the game's app icon.
+- `img/starfield.png`: the page background, a tile scattered from the
+  game's `sky/stars/` sprites (one art pixel per texel block, the
+  starfield's own colour weights).
+- Colours: the sky, and `ui/theme.tres`' cream panels, brown edges and
+  dark button wells.
 - `img/social/`: brand icons from Simple Icons (CC0,
   https://simpleicons.org); the brands' own trade marks still apply.

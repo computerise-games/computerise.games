@@ -1,3 +1,7 @@
+@font-face { font-family: Silkscreen; src: url(fonts/Silkscreen-Regular.ttf) format("truetype"); font-display: swap; }
+@font-face { font-family: VT323; src: url(fonts/VT323-Regular.ttf) format("truetype"); font-display: swap; }
+
+/* The game's own palette: the sky, and ui/theme.tres' panels and buttons */
 :root {
   --sky: #282240;
   --sky-deep: #1c1830;
@@ -9,12 +13,20 @@
   --flame-hot: #ffc266;
   --ocean: #3fa3f0;
   --steam: #1b2838;
+  --cream: #f2e3c0;
+  --cream-ink: #3b3024;
+  --cream-muted: #7a6446;
+  --edge: #8a7048;
+  --well: #2b293d;
+  --well-hover: #3d3a54;
 }
 * { box-sizing: border-box; }
 html { background: var(--sky-deep); scroll-behavior: smooth; }
 body {
   margin: 0;
-  background: var(--sky);
+  /* Tiled from the game's own star sprites (sky/stars), one art px each */
+  background: var(--sky) url(img/starfield.png) repeat;
+  image-rendering: auto;
   color: var(--ink);
   font: 400 17px/1.6 Inter, system-ui, sans-serif;
 }
@@ -48,14 +60,15 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 .ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 26px 0 8px; }
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
-  padding: 12px 20px; border-radius: 6px; border: 2px solid var(--line);
+  padding: 12px 20px; border-radius: 6px; border: 2px solid var(--edge);
   font: 400 15px/1.2 Silkscreen, monospace; letter-spacing: .02em;
-  color: var(--ink); background: var(--panel); text-decoration: none;
+  color: var(--ink); background: var(--well); text-decoration: none;
   transition: transform .12s ease, background-color .12s ease, border-color .12s ease, box-shadow .12s ease;
 }
-.btn:hover, .btn:focus-visible { transform: translateY(-2px); border-color: var(--muted); }
+.btn:hover, .btn:focus-visible { transform: translateY(-2px); background: var(--well-hover); border-color: var(--cream); }
+.btn .gi { width: 32px; height: 32px; margin: -6px 0; image-rendering: pixelated; flex: none; }
 .btn:focus-visible { outline: 2px solid var(--ocean); outline-offset: 3px; }
-.btn.primary { color: var(--sky-deep); background: var(--flame); border-color: var(--flame); }
+.btn.primary { color: var(--sky-deep); background: var(--flame); border-color: var(--edge); }
 .btn.primary:hover, .btn.primary:focus-visible {
   background: var(--flame-hot); border-color: var(--flame-hot);
   box-shadow: 0 0 0 4px rgb(255 154 46 / .25), 0 8px 28px rgb(255 154 46 / .35);
@@ -70,16 +83,18 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 .features { margin: 72px auto; display: grid; gap: 72px; }
 .feature { display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; align-items: center; }
 .feature.flip .shot { order: 2; }
-.feature img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
+.feature .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
                border: 1px solid var(--line); border-radius: 6px; }
-.feature h2 { margin: 0 0 10px; font-size: 22px; line-height: 1.2; color: var(--flame); }
+.feature h2, .spread h2 { display: flex; align-items: center; gap: 14px;
+                         margin: 0 0 10px; font-size: 22px; line-height: 1.2; color: var(--flame); }
+.spread h2 { justify-content: center; }
+.hicon { width: 48px; height: 48px; image-rendering: pixelated; flex: none; }
 .feature p { margin: 0; }
 
 /* Full-width spreads for the menu panels: text above, the still edge to
    edge, faded into the sky top and bottom like the hero */
 .spread { margin: 24px 0 72px; }
 .spread .wrap { text-align: center; }
-.spread h2 { margin: 0 0 10px; font-size: 22px; line-height: 1.2; color: var(--flame); }
 .spread p { margin: 0 auto 8px; max-width: 64ch; }
 .wide-shot { position: relative; margin: 0; }
 .wide-shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
@@ -92,6 +107,12 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
                          color: var(--muted); font-size: 14px; text-align: center; padding: 16px; }
 .wide-shot.placeholder::after { content: none; }
 
+/* The fleet: hull sprites at one shared scale (2 CSS px per texel), noses up */
+.fleet { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 22px; margin: 22px 0 0; padding: 0; list-style: none; }
+.fleet li { display: flex; flex-direction: column; align-items: center; gap: 6px;
+            font: 400 20px/1 VT323, monospace; color: var(--muted); }
+.fleet img { image-rendering: pixelated; }
+
 /* Demo + follow bands */
 .band { border-top: 1px solid var(--line); padding: 56px 0; text-align: center; }
 .band h2 { margin: 0 0 12px; font-size: 26px; }
@@ -100,11 +121,23 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 .follow { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px; }
 .follow .btn { padding: 10px 16px; font-size: 13px; }
 
+.full-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+                 margin: 28px 0 8px; padding: 0; list-style: none; }
+.full-features li { display: flex; flex-direction: column; align-items: center; gap: 10px;
+                    width: 200px; padding: 20px 16px; border: 2px solid var(--edge);
+                    border-radius: 6px; background: var(--cream); color: var(--cream-ink); }
+.full-features img { width: 48px; height: 48px; image-rendering: pixelated; }
+.full-features span { font: 400 28px/1 VT323, monospace; }
+
 /* Releases page */
 .page { padding: 48px 0 64px; }
 .page h1 { font-size: 34px; margin: 0 0 8px; }
 .page .lede { color: var(--muted); margin: 0 0 32px; }
-.release { border: 1px solid var(--line); border-radius: 8px; padding: 22px 24px; margin-bottom: 18px; background: var(--panel); }
+.release { border: 2px solid var(--edge); border-radius: 6px; padding: 22px 24px; margin-bottom: 18px;
+           background: var(--cream); color: var(--cream-ink); }
+.release th { color: var(--cream-muted); }
+.release th, .release td { border-bottom-color: #d9c79f; }
+.release table { font: 400 22px/1.2 VT323, monospace; }
 .release h2 { margin: 0 0 6px; font-size: 20px; }
 .release .tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 4px; font-size: 12px; vertical-align: middle;
                 color: var(--sky-deep); background: var(--flame); }

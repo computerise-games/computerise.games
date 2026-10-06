@@ -12,10 +12,10 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#282240">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Silkscreen&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -51,8 +51,8 @@
               data-ship="img/title/ship.png"></canvas>
 
       <div class="ctas">
-        <a class="btn primary" href="https://playnewworlds.com">Play the Demo!</a>
-        <a class="btn" href="releases.html">Full Game Coming Soon</a>
+        <a class="btn primary" href="https://playnewworlds.com"><img class="gi" src="img/icons/play.png" width="32" height="32" alt="">Play the Demo!</a>
+        <a class="btn" href="releases.html"><img class="gi" src="img/icons/launch.png" width="32" height="32" alt="">Full Game Coming Soon</a>
         <!-- Placeholder: swap STEAM_APP_ID for the store page's app id once it exists. -->
         <a class="btn steam" href="https://store.steampowered.com/app/STEAM_APP_ID/New_Worlds/">
           <span class="icon" style="--src: url(img/social/steam.svg)"></span>Wishlist on Steam
@@ -70,7 +70,7 @@
              alt="A long voxel freighter, stacked with coloured cargo modules, coasting through space">
       </div>
       <div>
-        <h2 class="pixel">A space-faring universe</h2>
+        <h2 class="pixel"><img class="hicon" src="img/icons/ship.png" width="48" height="48" alt="">A space-faring universe</h2>
         <p>New Worlds is a space-faring universe simulation game where you navigate gravity to
            explore, complete missions, trade, upgrade and improve your ship fleet.</p>
       </div>
@@ -79,7 +79,7 @@
 
   <section class="spread">
     <div class="wrap">
-      <h2 class="pixel">The last great frontier</h2>
+      <h2 class="pixel"><img class="hicon" src="img/icons/landing.png" width="48" height="48" alt="">The last great frontier</h2>
       <p>Adventure to uncharted planets, to settle and develop the &ldquo;New Worlds&rdquo; of
          the last great frontier!</p>
     </div>
@@ -92,7 +92,7 @@
   </section>
   <section class="spread">
     <div class="wrap">
-      <h2 class="pixel">In search of New-Terra</h2>
+      <h2 class="pixel"><img class="hicon" src="img/icons/habitability.png" width="48" height="48" alt="">In search of New-Terra</h2>
       <p>An endless timeline makes the stars and terraforming planets within reach in a search
          for &ldquo;New-Terra&rdquo;.</p>
     </div>
@@ -103,7 +103,7 @@
   </section>
   <section class="spread">
     <div class="wrap">
-      <h2 class="pixel">Living solar systems</h2>
+      <h2 class="pixel"><img class="hicon" src="img/icons/pop_headcount.png" width="48" height="48" alt="">Living solar systems</h2>
       <p>Travel to dynamic planets across procedural solar systems, whose atmospheres,
          resources, markets and populations evolve over time, influenced by player
          action&hellip;or inaction.</p>
@@ -123,7 +123,7 @@
              alt="A blazing blue star at the heart of the Candor frontier system">
       </div>
       <div>
-        <h2 class="pixel">Factions</h2>
+        <h2 class="pixel"><img class="hicon" src="img/icons/factions.png" width="48" height="48" alt="">Factions</h2>
         <p>The interests of Factions unfold through politics and diplomacy, as well as aggressive
            expansionism, in an endless scramble to reap the rewards of the galaxy.</p>
       </div>
@@ -136,7 +136,7 @@
              alt="A projected trajectory curving away from the sun towards a distant planet">
       </div>
       <div>
-        <h2 class="pixel">The physics of gravity</h2>
+        <h2 class="pixel"><img class="hicon" src="img/icons/orbital_period.png" width="48" height="48" alt="">The physics of gravity</h2>
         <p>The game features a top-down 2D map-mode, allowing players to intuitively navigate
            space whilst exploring the beautiful physics of gravity.</p>
       </div>
@@ -149,7 +149,7 @@
              alt="A rocket burns below Venera as the planet passes in front of a huge, blazing star">
       </div>
       <div>
-        <h2 class="pixel">A 3D world revealed</h2>
+        <h2 class="pixel"><img class="hicon" src="img/icons/camera_mode_tilt.png" width="48" height="48" alt="">A 3D world revealed</h2>
         <p>The camera seamlessly reveals the 3D world around the player, with voxel spaceships,
            panoramas of moons rising and setting, rings around gas giants, plus eclipses and
            transits across huge stars.</p>
@@ -163,9 +163,16 @@
              alt="A voxel freighter docked at Ivory station, solar panels spread">
       </div>
       <div>
-        <h2 class="pixel">Trader or emperor</h2>
+        <h2 class="pixel"><img class="hicon" src="img/icons/crate.png" width="48" height="48" alt="">Trader or emperor</h2>
         <p>Join a guild, buy a freighter and become a humble space-trader, or create your own
            faction and race the other powers to build a great space empire!</p>
+        <ul class="fleet" aria-label="Ship classes">
+          <li><img src="img/ships/scout.png" width="36" height="24" alt="">Scout</li>
+          <li><img src="img/ships/freighter.png" width="48" height="36" alt="">Freighter</li>
+          <li><img src="img/ships/starliner.png" width="48" height="36" alt="">Starliner</li>
+          <li><img src="img/ships/carrier.png" width="72" height="54" alt="">Carrier</li>
+          <li><img src="img/ships/colony.png" width="72" height="54" alt="">Colony</li>
+        </ul>
       </div>
     </section>
   </div>
@@ -175,13 +182,27 @@
       <h2 class="pixel">Free Demo</h2>
       <p>The demo of the Web version of the game is publicly playable at
          <a href="https://playnewworlds.com">playnewworlds.com</a>, check it out!</p>
-      <p class="muted">The demo is a locked-down version of the game, with no Multiplayer, a cap on
-         in-game years and some features are gated behind the paid version. Most future features
-         and systems in the game will only be available in the full version, and the game is
-         planned to be in active development and early-access to get user feedback as soon as
-         possible.</p>
       <div class="ctas">
-        <a class="btn primary" href="https://playnewworlds.com">Play the Demo!</a>
+        <a class="btn primary" href="https://playnewworlds.com"><img class="gi" src="img/icons/play.png" width="32" height="32" alt="">Play the Demo!</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="full-game">
+    <div class="wrap">
+      <h2 class="pixel">Full Game</h2>
+      <p class="muted">Coming soon to early access, in active development and shaped by player
+         feedback.</p>
+      <ul class="full-features">
+        <li><img src="img/features/endless-timeline.png" width="48" height="48" alt=""><span class="pixel">Endless Timeline</span></li>
+        <li><img src="img/features/multiplayer.png" width="48" height="48" alt=""><span class="pixel">Multiplayer</span></li>
+        <li><img src="img/features/star-systems.png" width="48" height="48" alt=""><span class="pixel">Multiple Star Systems</span></li>
+      </ul>
+      <div class="ctas">
+        <!-- Placeholder: swap STEAM_APP_ID for the store page's app id once it exists. -->
+        <a class="btn steam" href="https://store.steampowered.com/app/STEAM_APP_ID/New_Worlds/">
+          <span class="icon" style="--src: url(img/social/steam.svg)"></span>Wishlist on Steam
+        </a>
       </div>
     </div>
   </section>
