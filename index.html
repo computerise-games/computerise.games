@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Computerise</title>
+<meta name="description" content="Computerise is an independent games studio. Our first game, New Worlds, is coming soon.">
+<meta property="og:title" content="Computerise">
+<meta property="og:description" content="An independent games studio. New Worlds is coming soon.">
+<meta property="og:image" content="https://computerise.games/img/og.jpg">
+<meta property="og:url" content="https://computerise.games/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#282240">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #282240;
+    --sky-deep: #1c1830;
+    --ink: #ece9f7;
+    --muted: #a59fc4;
+    --line: #3d3560;
+    --flame: #ff9a2e;
+    --ocean: #3fa3f0;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--sky-deep); }
+  body {
+    margin: 0;
+    background: var(--sky);
+    color: var(--ink);
+    font: 400 17px/1.6 Inter, system-ui, sans-serif;
+  }
+  a { color: var(--ocean); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  .pixel { font-family: Silkscreen, monospace; letter-spacing: .02em; }
+
+  header { padding: 28px 0; border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; gap: 12px; }
+  .brand { font-size: 22px; color: var(--ink); text-decoration: none; }
+  .brand span { color: var(--flame); }
+
+  .hero { position: relative; }
+  .hero img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; max-height: 78vh;
+              object-fit: cover; }
+  .hero::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 55%, var(--sky) 100%);
+    pointer-events: none;
+  }
+
+  .game { display: grid; grid-template-columns: 96px 1fr; gap: 24px; align-items: start;
+          margin-top: -40px; position: relative; z-index: 1; }
+  .game .icon { width: 96px; height: 96px; image-rendering: pixelated; border-radius: 18px;
+                box-shadow: 0 6px 24px rgb(0 0 0 / .4); }
+  h1 { font-size: clamp(34px, 7vw, 56px); line-height: 1.05; margin: 0 0 6px; }
+  .soon { display: inline-block; margin: 0 0 18px; padding: 4px 10px; font-size: 14px;
+          color: var(--sky-deep); background: var(--flame); border-radius: 4px; }
+  .game p { margin: 0 0 14px; max-width: 64ch; color: var(--ink); }
+  .game p.muted { color: var(--muted); }
+
+  .shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 48px 0; }
+  .shots figure { margin: 0; }
+  .shots img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
+               border: 1px solid var(--line); border-radius: 6px; }
+  .shots figcaption { margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+  @media (max-width: 640px) {
+    .game { grid-template-columns: 1fr; margin-top: -24px; gap: 12px; }
+    .game .icon { width: 72px; height: 72px; border-radius: 14px; }
+    .shots { grid-template-columns: 1fr; margin: 32px 0; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand pixel" href="/">Computerise<span>.</span></a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <img src="img/terra-dawn-burn.webp"
+         srcset="img/terra-dawn-burn-960.webp 960w, img/terra-dawn-burn.webp 1920w"
+         sizes="100vw" width="1920" height="1080"
+         alt="A small rocket fires its engine in orbit over a blue and green planet, with a space station and a passing ship nearby">
+  </div>
+
+  <div class="wrap">
+    <section class="game">
+      <img class="icon" src="img/new-worlds-icon.png" width="96" height="96" alt="">
+      <div>
+        <h1 class="pixel">New Worlds</h1>
+        <div class="soon pixel">Coming soon</div>
+        <p>A space-faring universe simulation where you navigate gravity to explore,
+           trade, complete missions and build up your fleet. Fly to uncharted planets,
+           then settle and develop the new worlds of the last great frontier.</p>
+        <p>Travel across procedural solar systems whose atmospheres, markets and
+           populations change over time, shaped by what you do and what you leave
+           alone. Factions expand, bargain and fight over the galaxy. Join a guild as
+           a humble space trader, or found your own faction and race the other powers
+           to build an empire.</p>
+        <p class="muted">Fly a top-down map with real orbital physics, while the camera
+           tilts to show the 3D world around you: voxel ships, moons rising and
+           setting, ringed gas giants, eclipses and transits across huge stars.</p>
+      </div>
+    </section>
+
+    <section class="shots" aria-label="Screenshots">
+      <figure>
+        <img src="img/saturnus-rings-960.webp"
+             srcset="img/saturnus-rings-960.webp 960w, img/saturnus-rings.webp 1920w"
+             sizes="(max-width: 640px) 100vw, 540px" width="1920" height="1080" loading="lazy"
+             alt="A banded gas giant with wide pale rings, ships and stations in orbit around it">
+        <figcaption>Ringed giant Saturnus</figcaption>
+      </figure>
+      <figure>
+        <img src="img/interplanetary-transfer-960.webp"
+             srcset="img/interplanetary-transfer-960.webp 960w, img/interplanetary-transfer.webp 1920w"
+             sizes="(max-width: 640px) 100vw, 540px" width="1920" height="1080" loading="lazy"
+             alt="A projected trajectory curving away from the sun towards a distant planet">
+        <figcaption>Plotting an interplanetary transfer</figcaption>
+      </figure>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Computerise. Screenshots show the game in development.</span>
+    <span class="pixel">computerise.games</span>
+  </div>
+</footer>
+</body>
+</html>
