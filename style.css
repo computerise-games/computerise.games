@@ -180,6 +180,18 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 .full-features img { width: 48px; height: 48px; image-rendering: pixelated; }
 .full-features span { font: 400 28px/1 VT323, monospace; }
 
+/* The demo's one link, as a box */
+.link-box { display: inline-flex; align-items: center; gap: 14px; margin-top: 18px;
+            padding: 16px 28px; border: 2px solid var(--edge); border-radius: 6px;
+            background: var(--well); color: var(--flame-hot); text-decoration: none;
+            font-size: clamp(18px, 4vw, 26px);
+            transition: transform .12s ease, background-color .12s ease, border-color .12s ease; }
+.link-box .gi { width: 32px; height: 32px; image-rendering: pixelated; }
+.link-box:hover, .link-box:focus-visible { transform: translateY(-2px); background: var(--well-hover);
+                                           border-color: var(--cream); }
+.link-box:focus-visible { outline: 2px solid var(--ocean); outline-offset: 3px; }
+@media (max-width: 480px) { .link-box { gap: 10px; padding: 12px 16px; font-size: 16px; } }
+
 /* Releases page */
 .release-lede { font-weight: 600; }
 .notes h3 { margin: 18px 0 6px; font-size: 14px; color: var(--cream-muted); }
