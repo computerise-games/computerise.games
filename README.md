@@ -1,7 +1,7 @@
 # computerise.games
 
-The Computerise studio site: a single static page listing New Worlds as
-coming soon. Served by GitHub Pages at https://computerise.games.
+The Computerise studio site: the New Worlds landing page (`index.html`)
+and its releases page (`releases.html`). Served by GitHub Pages at https://computerise.games.
 
 ## Preview locally
 
@@ -26,8 +26,22 @@ One-time setup:
 4. Optional, recommended: verify the domain under the account's
    Settings > Pages so no other repo can claim it.
 
-## Screenshots
+## Placeholders to fill in
 
-`img/` holds WebP copies (full size plus 960px) of stills from the game
-repo's `docs/media/screenshots/`. `og.jpg` is the 1200x675 link-preview
-image.
+- **Steam:** both pages link to
+  `https://store.steampowered.com/app/STEAM_APP_ID/New_Worlds/`; replace
+  `STEAM_APP_ID` once the Coming Soon page exists.
+- **Social:** the Follow buttons in `index.html` point at `#follow`.
+- **Releases:** `releases.html`'s table is written by hand; add a row per
+  release.
+
+## Assets
+
+- `img/*.webp`: full-size and 960px copies of stills from the game repo's
+  `docs/media/screenshots/`. `og.jpg` is the 1200x675 link-preview image.
+- `img/title/`: the main menu's title layers (`ui/title_logo/`), Terra's
+  loading loop sheet and the player ship sprite, drawn live by
+  `title-logo.js` - a port of the game's `ui/title_logo.gd`. Re-copy them
+  if the game's title is rebaked.
+- `img/social/`: brand icons from Simple Icons (CC0,
+  https://simpleicons.org); the brands' own trade marks still apply.
