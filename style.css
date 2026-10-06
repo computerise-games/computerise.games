@@ -106,6 +106,8 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 .features { margin: 72px auto; display: grid; gap: 72px; }
 .feature { display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; align-items: center; }
 .feature.flip .shot { order: 2; }
+/* A cut-out menu panel keeps its own shape and its pixels square */
+.feature .shot.menu img { aspect-ratio: auto; image-rendering: pixelated; }
 .feature .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
                border: 1px solid var(--line); border-radius: 6px; }
 .feature h2, .spread h2 { display: flex; align-items: center; gap: 14px;
