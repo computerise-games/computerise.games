@@ -194,6 +194,7 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 
 /* Releases page */
 .release-lede { font-weight: 600; }
+.release-art { display: block; width: 100%; height: auto; margin: 14px 0 4px; border: 2px solid var(--edge); border-radius: 6px; }
 .notes h3 { margin: 18px 0 6px; font-size: 14px; color: var(--cream-muted); }
 .notes ul { margin: 0; padding-left: 20px; }
 .notes li { margin: 4px 0; }
