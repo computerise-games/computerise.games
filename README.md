@@ -1,6 +1,6 @@
 # computerise.games
 
-The Computerise studio site: the New Worlds landing page (`index.html`)
+The computerise studio site: the New Worlds landing page (`index.html`)
 and its releases page (`releases.html`). Served by GitHub Pages at https://computerise.games.
 
 ## Preview locally
