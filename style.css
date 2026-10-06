@@ -125,6 +125,13 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(to bottom, var(--sky) 0%, transparent 18%, transparent 82%, var(--sky) 100%);
 }
+/* Two worlds side by side, each faded like a single spread */
+.wide-shot.pair { display: grid; grid-template-columns: 1fr 1fr; }
+.wide-shot.pair figure { position: relative; margin: 0; }
+.wide-shot.pair img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.wide-shot.pair figcaption { position: absolute; left: 50%; bottom: 3%; z-index: 1; transform: translateX(-50%);
+                             font-size: 18px; color: var(--ink); text-shadow: 0 2px 0 var(--sky-deep); }
+@media (max-width: 760px) { .wide-shot.pair { grid-template-columns: 1fr; } }
 .wide-shot.placeholder { display: grid; place-items: center; aspect-ratio: 16 / 9; width: min(640px, calc(100% - 32px));
                          margin: 0 auto; border: 2px dashed var(--line); border-radius: 8px;
                          color: var(--muted); font-size: 14px; text-align: center; padding: 16px; }
