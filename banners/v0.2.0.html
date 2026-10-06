@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Voxel Worlds banner</title>
+<!-- Source for img/banner-v0.2.0.png (1920x720). Serve the repo root, then:
+     google-chrome --headless=new --window-size=1920,720 \
+       --screenshot=img/banner-v0.2.0.png http://localhost:8070/banners/v0.2.0.html -->
+<style>
+  @font-face { font-family: Silkscreen; src: url(../fonts/Silkscreen-Regular.ttf); }
+  @font-face { font-family: VT323; src: url(../fonts/VT323-Regular.ttf); }
+  html, body { margin: 0; width: 1920px; height: 720px; overflow: hidden; background: #1c1830; }
+  .art { position: absolute; inset: 0; background: url(../img/banner-voxel-worlds.webp) center / cover; }
+  .shade { position: absolute; inset: 0;
+           background: linear-gradient(to right, rgb(28 24 48 / .94) 0%, rgb(28 24 48 / .7) 34%, transparent 62%); }
+  .text { position: absolute; left: 96px; top: 0; bottom: 0; width: 900px; display: flex;
+          flex-direction: column; justify-content: center; gap: 22px; color: #ece9f7; }
+  .game { font: 34px/1 Silkscreen, monospace; letter-spacing: .04em; color: #ece9f7; }
+  .tag { align-self: flex-start; padding: 8px 18px; border-radius: 6px; border: 3px solid #8a7048;
+         font: 28px/1 Silkscreen, monospace; color: #1c1830; background: #ff9a2e; }
+  h1 { margin: 0; font: 128px/1 Silkscreen, monospace; letter-spacing: .02em; color: #ffc266;
+       text-shadow: 0 8px 0 #7a3b0e; }
+  p { margin: 0; font: 44px/1.15 VT323, monospace; max-width: 22ch; }
+  .url { font: 26px/1 Silkscreen, monospace; color: #a59fc4; letter-spacing: .04em; }
+</style>
+</head>
+<body>
+  <div class="art"></div>
+  <div class="shade"></div>
+  <div class="text">
+    <div class="game">New Worlds</div>
+    <div class="tag">v0.2.0</div>
+    <h1>Voxel Worlds</h1>
+    <p>All worlds, ships and stations now have 3D voxel models!</p>
+    <div class="url">playnewworlds.com</div>
+  </div>
+</body>
+</html>
