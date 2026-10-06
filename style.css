@@ -67,13 +67,30 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
         -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
 
 /* Feature rows: a still beside each part of the pitch, sides alternating */
-.features { margin: 72px 0; display: grid; gap: 72px; }
+.features { margin: 72px auto; display: grid; gap: 72px; }
 .feature { display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; align-items: center; }
-.feature:nth-child(even) .shot { order: 2; }
+.feature.flip .shot { order: 2; }
 .feature img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
                border: 1px solid var(--line); border-radius: 6px; }
 .feature h2 { margin: 0 0 10px; font-size: 22px; line-height: 1.2; color: var(--flame); }
 .feature p { margin: 0; }
+
+/* Full-width spreads for the menu panels: text above, the still edge to
+   edge, faded into the sky top and bottom like the hero */
+.spread { margin: 24px 0 72px; }
+.spread .wrap { text-align: center; }
+.spread h2 { margin: 0 0 10px; font-size: 22px; line-height: 1.2; color: var(--flame); }
+.spread p { margin: 0 auto 8px; max-width: 64ch; }
+.wide-shot { position: relative; margin: 0; }
+.wide-shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.wide-shot::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, var(--sky) 0%, transparent 18%, transparent 82%, var(--sky) 100%);
+}
+.wide-shot.placeholder { display: grid; place-items: center; aspect-ratio: 16 / 9; width: min(640px, calc(100% - 32px));
+                         margin: 0 auto; border: 2px dashed var(--line); border-radius: 8px;
+                         color: var(--muted); font-size: 14px; text-align: center; padding: 16px; }
+.wide-shot.placeholder::after { content: none; }
 
 /* Demo + follow bands */
 .band { border-top: 1px solid var(--line); padding: 56px 0; text-align: center; }
@@ -103,9 +120,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 @media (max-width: 760px) {
   .title { margin-top: -20px; }
-  .features { gap: 48px; margin: 48px 0; }
+  .features { gap: 48px; margin: 48px auto; }
   .feature { grid-template-columns: 1fr; gap: 16px; }
-  .feature:nth-child(even) .shot { order: 0; }
+  .feature.flip .shot { order: 0; }
   .btn { width: 100%; justify-content: center; }
   .follow .btn { width: auto; }
 }
