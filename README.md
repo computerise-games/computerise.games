@@ -9,13 +9,13 @@ and its releases page (`releases.html`). Served by GitHub Pages at https://compu
 
 ## Deploy
 
-GitHub Pages serves `main` from the repo root; `CNAME` holds the custom
+GitHub Pages serves `master` from the repo root; `CNAME` holds the custom
 domain and `.nojekyll` skips the Jekyll build.
 
 One-time setup:
 
 1. Push this repo to GitHub, then Settings > Pages > Source: "Deploy from a
-   branch", `main`, `/ (root)`.
+   branch", `master`, `/ (root)`.
 2. At the registrar, point the apex domain at GitHub Pages:
    - `A` records for `computerise.games`: 185.199.108.153, 185.199.109.153,
      185.199.110.153, 185.199.111.153
