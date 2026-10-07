@@ -6,9 +6,9 @@
 - The demo version tags (between <!-- demo-version --> markers) become vX.Y.Z.
 - The Web Demo table gets a row for it, newest first (once only).
 - With a notes file, its card is written - replacing that version's card if
-  there is one, or going in above the older notes, dated beside its version.
-  img/banner-vX.Y.Z.png, if the site has one, heads the card in place of the
-  notes' opening line.
+  there is one, or going in above the older notes. img/banner-vX.Y.Z.png, if
+  the site has one, heads the card in place of the notes' opening line (and
+  carries the date - tools/make_banner.py).
 
 Run by the game repo's release workflow on a final release
 (tools/publish-site.sh there), and by hand for anything it missed.
@@ -65,13 +65,12 @@ def nice_date(day):
     return f"{day.day} {day.strftime('%b %Y')}"
 
 
-def card(version, day, notes_path):
+def card(version, notes_path):
     title, lede, groups = parse_notes(notes_path)
     anchor = "v" + version.replace(".", "-")
     lines = [
         f'    <article class="release" id="{anchor}">',
-        f'      <h2 class="pixel">{inline(title)} <span class="tag pixel">v{version}</span>'
-        f' <time class="release-date" datetime="{day.isoformat()}">{nice_date(day)}</time></h2>',
+        f'      <h2 class="pixel">{inline(title)} <span class="tag pixel">v{version}</span></h2>',
     ]
     banner = f"img/banner-v{version}.png"
     if os.path.exists(os.path.join(SITE, banner)):
@@ -120,7 +119,7 @@ def main(argv):
             sys.exit("releases.html has no <!-- versions --> marker")
 
     if len(argv) == 4:
-        new = card(version, day, argv[3])
+        new = card(version, argv[3])
         anchor = "v" + version.replace(".", "-")
         page, replaced = re.subn(
             rf'    <article class="release" id="{anchor}">.*?</article>\n',
