@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>$title banner</title>
+<!-- The release banner template: tools/make_banner.py fills in $$version,
+     $$title, $$lede and $$art (a game screenshot, cropped to cover) and
+     renders it to img/banner-v<version>.png at 1920x720. -->
+<style>
+  @font-face { font-family: Silkscreen; src: url(../../fonts/Silkscreen-Regular.ttf); }
+  @font-face { font-family: VT323; src: url(../../fonts/VT323-Regular.ttf); }
+  html, body { margin: 0; width: 1920px; height: 720px; overflow: hidden; background: #1c1830; }
+  .art { position: absolute; inset: 0; background: url($art) center / cover; }
+  .shade { position: absolute; inset: 0;
+           background: linear-gradient(to right, rgb(28 24 48 / .94) 0%, rgb(28 24 48 / .7) 34%, transparent 62%),
+                       linear-gradient(to top, rgb(28 24 48 / .9) 0%, transparent 26%); }
+  .text { position: absolute; left: 96px; top: 56px; width: 900px; display: flex;
+          flex-direction: column; gap: 18px; color: #ece9f7; }
+  .head { display: flex; align-items: center; gap: 22px; }
+  .game { font: 34px/1 Silkscreen, monospace; letter-spacing: .04em; color: #ece9f7; }
+  .tag { padding: 8px 18px; border-radius: 6px; border: 3px solid #8a7048;
+         font: 28px/1 Silkscreen, monospace; color: #1c1830; background: #ff9a2e; }
+  h1 { margin: 6px 0 0; font: 116px/1 Silkscreen, monospace; letter-spacing: .02em; color: #ffc266;
+       text-shadow: 0 8px 0 #7a3b0e; }
+  p { margin: 0; font: 42px/1.15 VT323, monospace; max-width: 24ch; }
+  .url { position: absolute; right: 56px; bottom: 44px; font: 26px/1 Silkscreen, monospace;
+         color: #ece9f7; letter-spacing: .04em; text-shadow: 0 2px 0 #1c1830; }
+</style>
+</head>
+<body>
+  <div class="art"></div>
+  <div class="shade"></div>
+  <div class="text">
+    <div class="head"><div class="game">New Worlds</div><div class="tag">v$version</div></div>
+    <h1>$title</h1>
+    <p>$lede</p>
+  </div>
+  <div class="url">playnewworlds.com</div>
+</body>
+</html>
