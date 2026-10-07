@@ -8,7 +8,9 @@ Fills banners/release.html with the notes' title and opening line, the
 version, the release date (default today) and the screenshot (cropped to
 cover), and screenshots it with
 headless Chrome at 1920x720 - by default to img/banner-v<version>.png, the
-file add_release.py puts at the head of that release's card.
+file add_release.py puts at the head of that release's card. The bare
+screenshot goes beside it as <out>-art.webp and <out>-art-960.webp (needs
+Pillow), the art add_release.py gives the home page's banner.
 
 Run by the game repo's release.sh (a final release pushes the banner here
 before its tag), and by hand to preview one. CHROME names the browser if
@@ -87,7 +89,22 @@ def render(version, day, notes_path, art_path, out_path):
         shutil.rmtree(profile, ignore_errors=True)
     if not os.path.exists(out_path):
         sys.exit(f"Chrome didn't write {out_path}")
+    save_art(art_path, os.path.splitext(out_path)[0] + "-art")
     print(f"{out_path}: {title}, v{version}")
+
+
+def save_art(art_path, stem):
+    """The screenshot, uncropped, at 1920 and 960 wide - the home page's
+    banner crops it itself (8:3, or 16:9 on phones)."""
+    try:
+        from PIL import Image
+    except ImportError:
+        print("No Pillow - no home page art")
+        return
+    image = Image.open(art_path).convert("RGB")
+    for width, suffix in ((1920, ""), (960, "-960")):
+        size = (width, round(image.height * width / image.width))
+        image.resize(size, Image.LANCZOS).save(f"{stem}{suffix}.webp", quality=88)
 
 
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
