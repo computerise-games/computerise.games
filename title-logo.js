@@ -64,11 +64,9 @@
       ctx.drawImage(ship, -ship.naturalWidth / 2, -ship.naturalHeight / 2);
     }
 
-    function draw(elapsed) {
-      const framePos = (elapsed * FPS) % LOOP_FRAMES;
-      const frame = Math.floor(framePos);
+    function draw(frame) {
       // One lap of the orbit per turn of the globe, so the loop stays in step.
-      const t = (2 * Math.PI * framePos) / LOOP_FRAMES + ORBIT_PHASE;
+      const t = (2 * Math.PI * frame) / LOOP_FRAMES + ORBIT_PHASE;
       const farSide = Math.sin(t) <= 0;
       const k = scale / FACTOR;
 
@@ -89,16 +87,61 @@
       if (!farSide) drawShip(t);
     }
 
-    let start = null;
+    // The loop has 25 frames a second, so the canvas is redrawn only when the
+    // frame changes, not on every display refresh. It stops altogether while
+    // the title is off-screen or the tab hidden, and picks up where it left
+    // off rather than jumping ahead.
+    let elapsed = 0;
+    let last = null;
+    let shown = -1;
+    let onScreen = true;
+    let running = false;
+
+    function frameNow() {
+      return Math.floor(elapsed * FPS) % LOOP_FRAMES;
+    }
+
     function tick(now) {
-      if (start === null) start = now;
-      draw(still.matches ? 0 : (now - start) / 1000);
-      if (!still.matches) requestAnimationFrame(tick);
+      if (!active()) {
+        running = false;
+        last = null;
+        return;
+      }
+      if (last !== null) elapsed += Math.min(now - last, 250) / 1000;
+      last = now;
+      const frame = frameNow();
+      if (frame !== shown) {
+        shown = frame;
+        draw(frame);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function active() {
+      return onScreen && !document.hidden && !still.matches;
+    }
+
+    function wake() {
+      if (active() && !running) {
+        running = true;
+        requestAnimationFrame(tick);
+      }
     }
 
     layout();
-    window.addEventListener("resize", () => { layout(); if (still.matches) draw(0); });
-    still.addEventListener("change", () => { start = null; requestAnimationFrame(tick); });
-    requestAnimationFrame(tick);
+    draw(frameNow());
+    window.addEventListener("resize", () => {
+      layout();
+      draw(shown = frameNow());
+    });
+    document.addEventListener("visibilitychange", wake);
+    still.addEventListener("change", wake);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        onScreen = entries[entries.length - 1].isIntersecting;
+        wake();
+      }).observe(canvas);
+    }
+    wake();
   });
 })();
