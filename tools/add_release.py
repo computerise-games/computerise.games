@@ -39,11 +39,28 @@ PAGE = os.path.join(SITE, "releases.html")
 INDEX = os.path.join(SITE, "index.html")
 
 
+LINK = re.compile(
+    r"\[(?P<text>[^\]]+)\]\((?P<url>(?:https?://|mailto:)[^)\s]+)\)"
+    r"|(?P<bare>https?://[^\s<]+[^\s<.,;:!?)])"
+    r"|(?P<email>[\w.+-]+@[\w-]+(?:\.[\w-]+)+)"
+)
+
+
+def link(match):
+    if match["text"]:
+        return f'<a href="{match["url"]}">{match["text"]}</a>'
+    if match["bare"]:
+        return f'<a href="{match["bare"]}">{match["bare"]}</a>'
+    return f'<a href="mailto:{match["email"]}">{match["email"]}</a>'
+
+
 def inline(text):
-    """Escapes a line of notes, keeping `code` and **bold**."""
+    """Escapes a line of notes, keeping `code` and **bold**, and linking
+    [text](url), bare http(s) URLs and email addresses."""
     out = html.escape(text, quote=False)
     out = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", out)
-    return re.sub(r"`(.+?)`", r"<code>\1</code>", out)
+    out = re.sub(r"`(.+?)`", r"<code>\1</code>", out)
+    return LINK.sub(link, out)
 
 
 def parse_notes(path):
