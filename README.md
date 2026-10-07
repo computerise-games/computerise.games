@@ -37,6 +37,13 @@ One-time setup:
 
 ## Assets
 
+- `video/new-worlds-trailer.mp4`: the landing page's hero - the game repo's
+  trailer (`tools/capture/edit.py`, the v0.2.3 cut) re-encoded for the web,
+  1080p H.264 at ~3 Mbps with AAC, `faststart` so it streams. Kept under
+  GitHub Pages' 100 MB file limit. `trailer.js` plays it muted and looping
+  behind the title, and its "Watch the trailer" button plays it fullscreen
+  from the start with sound; the old hero still, `terra-launch-transit`,
+  is its poster and the gallery page's header now.
 - `img/*.webp`: full-size and 960px copies of stills from the game repo's
   `docs/media/screenshots/`. `og.jpg` is the 1200x675 link-preview image.
 - `img/title/`: the main menu's title layers (`ui/title_logo/`), Terra's

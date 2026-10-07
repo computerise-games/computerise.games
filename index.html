@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <header>
@@ -35,11 +35,17 @@
 </header>
 
 <main id="new-worlds">
+  <!-- The trailer, muted and looping behind the title; "Watch fullscreen"
+       plays it from the start with sound (trailer.js). -->
   <div class="hero">
-    <img src="img/terra-launch-transit.webp"
-         srcset="img/terra-launch-transit-960.webp 960w, img/terra-launch-transit.webp 1920w"
-         sizes="100vw" width="1920" height="1080"
-         alt="A Colony ship's booster stack climbs off Terra's edge as the Sun rises behind it, the moon Lune crossing its face">
+    <video id="trailer" muted loop playsinline preload="metadata"
+           poster="img/terra-launch-transit.webp" width="1920" height="1080"
+           aria-label="New Worlds trailer">
+      <source src="video/new-worlds-trailer.mp4" type="video/mp4">
+    </video>
+    <button class="btn hero-watch" type="button" id="trailer-full" hidden>
+      <img class="gi" src="img/icons/play.png" width="32" height="32" alt="">Watch the trailer
+    </button>
   </div>
 
   <div class="wrap">
@@ -309,5 +315,6 @@
   </div>
 </footer>
 <script src="title-logo.js?v=2"></script>
+<script src="trailer.js?v=1"></script>
 </body>
 </html>
