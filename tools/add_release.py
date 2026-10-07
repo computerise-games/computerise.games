@@ -6,8 +6,9 @@
 - The demo version tags (between <!-- demo-version --> markers) become vX.Y.Z.
 - The Web Demo table gets a row for it, newest first (once only).
 - With a notes file, its card is written - replacing that version's card if
-  there is one, or going in above the older notes. img/banner-vX.Y.Z.png, if
-  the site has one, heads the card in place of the notes' opening line.
+  there is one, or going in above the older notes, dated beside its version.
+  img/banner-vX.Y.Z.png, if the site has one, heads the card in place of the
+  notes' opening line.
 
 Run by the game repo's release workflow on a final release
 (tools/publish-site.sh there), and by hand for anything it missed.
@@ -60,12 +61,17 @@ def parse_notes(path):
     return title, " ".join(lede), groups
 
 
-def card(version, notes_path):
+def nice_date(day):
+    return f"{day.day} {day.strftime('%b %Y')}"
+
+
+def card(version, day, notes_path):
     title, lede, groups = parse_notes(notes_path)
     anchor = "v" + version.replace(".", "-")
     lines = [
         f'    <article class="release" id="{anchor}">',
-        f'      <h2 class="pixel">{inline(title)} <span class="tag pixel">v{version}</span></h2>',
+        f'      <h2 class="pixel">{inline(title)} <span class="tag pixel">v{version}</span>'
+        f' <time class="release-date" datetime="{day.isoformat()}">{nice_date(day)}</time></h2>',
     ]
     banner = f"img/banner-v{version}.png"
     if os.path.exists(os.path.join(SITE, banner)):
@@ -107,14 +113,14 @@ def main(argv):
     if f"<td>v{version}</td>" not in page:
         row = (
             f"          <tr><td>v{version}</td><td>Web demo</td>"
-            f"<td>{day.day} {day.strftime('%b %Y')}</td></tr>\n"
+            f"<td>{nice_date(day)}</td></tr>\n"
         )
         page, rows = re.subn(r"(<!-- versions -->\n)", lambda m: m.group(1) + row, page, count=1)
         if not rows:
             sys.exit("releases.html has no <!-- versions --> marker")
 
     if len(argv) == 4:
-        new = card(version, argv[3])
+        new = card(version, day, argv[3])
         anchor = "v" + version.replace(".", "-")
         page, replaced = re.subn(
             rf'    <article class="release" id="{anchor}">.*?</article>\n',
