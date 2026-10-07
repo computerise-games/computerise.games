@@ -26,6 +26,7 @@ import sys
 import tempfile
 import threading
 
+sys.dont_write_bytecode = True  # no tools/__pycache__ in the site
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from add_release import SITE, inline, nice_date, parse_notes  # noqa: E402
 
