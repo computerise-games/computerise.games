@@ -172,13 +172,21 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 .follow { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px; }
 .follow .btn { padding: 10px 16px; font-size: 13px; }
 
-.full-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
-                 margin: 28px 0 8px; padding: 0; list-style: none; }
-.full-features li { display: flex; flex-direction: column; align-items: center; gap: 10px;
-                    width: 200px; padding: 20px 16px; border: 2px solid var(--edge);
+.full-features { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
+                 max-width: 980px; margin: 28px auto 8px; padding: 0; list-style: none; }
+.full-features li { display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+                    gap: 12px; padding: 20px 12px; border: 2px solid var(--edge);
                     border-radius: 6px; background: var(--cream); color: var(--cream-ink); }
-.full-features img { width: 48px; height: 48px; image-rendering: pixelated; }
-.full-features span { font: 400 28px/1 VT323, monospace; }
+.full-features img { height: 48px; width: auto; max-width: 100%; object-fit: contain;
+                     image-rendering: pixelated; flex: none; margin: auto 0; }
+.full-features span { font: 400 26px/1 VT323, monospace; text-align: center; }
+/* Four across on a phone too: the art and type shrink, the row stays. */
+@media (max-width: 760px) {
+  .full-features { gap: 6px; }
+  .full-features li { padding: 10px 4px; gap: 8px; border-width: 1px; }
+  .full-features img { height: 28px; }
+  .full-features span { font-size: 15px; }
+}
 
 /* The demo's one link, as a box */
 .link-box { display: inline-flex; align-items: center; gap: 14px; margin-top: 18px;
