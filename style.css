@@ -54,21 +54,9 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 }
 .hero-watch-row { position: relative; z-index: 2; display: flex; justify-content: flex-end;
                   align-items: center; min-height: 64px; padding: 8px 24px; background: var(--sky); }
-.trailer-quality { position: absolute; z-index: 2; top: 24px; right: 24px;
-                   display: flex; align-items: center; gap: 8px; padding: 6px 10px;
-                   border: 1px solid var(--line); border-radius: 8px;
-                   color: var(--ink); background: rgb(28 24 48 / 90%); font-size: 13px; }
-.trailer-quality[hidden] { display: none; }
-.trailer-quality select { max-width: 100%; padding: 4px 6px; border: 1px solid var(--line);
-                          border-radius: 4px; color: var(--ink); background: var(--well);
-                          font: inherit; }
-.trailer-quality select:focus-visible { outline: 2px solid var(--flame-hot); outline-offset: 2px; }
-.hero:fullscreen, .hero:-webkit-full-screen { position: fixed; inset: 0; display: block;
-  width: 100vw; height: 100vh; max-height: none; background: #000; }
-.hero:fullscreen::after, .hero:-webkit-full-screen::after { display: none; }
-.hero:fullscreen video, .hero:-webkit-full-screen video { width: 100%; height: 100%;
+.hero-watch { cursor: pointer; }
+.hero video:fullscreen, .hero video:-webkit-full-screen { width: 100vw; height: 100vh;
   max-height: none; aspect-ratio: auto; object-fit: contain; background: #000; }
-.hero:fullscreen .hero-watch-row, .hero:-webkit-full-screen .hero-watch-row { display: none; }
 /* A phone's hero is short: keep the watch action compact. */
 @media (max-width: 640px) {
   .hero::after { bottom: 56px; }

@@ -37,16 +37,17 @@ One-time setup:
 
 ## Assets
 
-- `video/new-worlds-trailer.mp4`: the landing page's hero - the game repo's
-  trailer (`tools/capture/edit.py`, the v0.2.3 cut) re-encoded for the web,
-  1080p H.264 at ~3 Mbps with AAC, `faststart` so it streams. Kept under
-  GitHub Pages' 100 MB file limit. `trailer.js` plays it muted and looping
-  behind the title, and its "Watch the trailer" button plays it fullscreen
-  from the start with sound. The quality selector keeps the original 1080p60
-  option available; 1080p30 and 720p30 choices are placeholders until those
-  encodes are published. Quality settings appear only in fullscreen. The old
-  hero still, `terra-launch-transit`, is its poster and the gallery page's
-  header now.
+- `video/new-worlds-trailer.mp4`, `video/new-worlds-trailer-1080p30.mp4`
+  and `video/new-worlds-trailer-720p30.mp4`: the landing page's hero, using
+  the game repo's trailer (`tools/capture/edit.py`) re-encoded as 1080p60,
+  1080p30 and 720p30 H.264/AAC MP4s with `faststart`. Run
+  `tools/encode-trailer-variants.sh [high-quality-input.mp4]` after replacing
+  the high-quality source to rebuild the two smaller files. `trailer.js` picks
+  a source from the browser's Network Information estimate and switches while
+  preserving playback position when the estimate changes; browsers without
+  that API use the 1080p30 encode. "Watch the trailer" opens the video itself
+  in fullscreen with the browser's native controls. The old hero still,
+  `terra-launch-transit`, is its poster and the gallery page's header now.
 - `img/*.webp`: full-size and 960px copies of stills from the game repo's
   `docs/media/screenshots/`. `og.jpg` is the 1200x675 link-preview image.
 - `img/title/`: the main menu's title layers (`ui/title_logo/`), Terra's

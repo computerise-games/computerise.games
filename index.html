@@ -35,10 +35,10 @@
 </header>
 
 <main id="new-worlds">
-  <!-- The trailer, muted and looping behind the title; the player controls
-       appear when "Watch the trailer" starts fullscreen playback. -->
+  <!-- The trailer, muted and looping behind the title; "Watch the trailer"
+       opens the video itself in fullscreen with the browser's own controls. -->
   <div class="hero">
-    <video id="trailer" muted loop playsinline preload="metadata"
+    <video id="trailer" muted loop playsinline preload="none"
            poster="img/terra-launch-transit.webp" width="1920" height="1080"
            aria-label="New Worlds trailer">
       <source src="video/new-worlds-trailer.mp4" type="video/mp4">
@@ -48,14 +48,6 @@
         <img class="gi" src="img/icons/play-glyph.png" width="32" height="32" alt="">Watch the trailer
       </button>
     </div>
-    <label class="trailer-quality" for="trailer-quality" hidden>
-      <span>Quality</span>
-      <select id="trailer-quality">
-        <option value="video/new-worlds-trailer.mp4">Original (1080p60)</option>
-        <option value="" disabled>1080p30 (coming soon)</option>
-        <option value="" disabled>720p30 (coming soon)</option>
-      </select>
-    </label>
   </div>
 
   <div class="wrap">
