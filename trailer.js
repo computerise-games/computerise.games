@@ -12,11 +12,18 @@
     standard: "video/new-worlds-trailer-1080p30.mp4",
     high: "video/new-worlds-trailer.mp4",
   };
+  const qualityRank = new Map([
+    [sources.low, 0],
+    [sources.standard, 1],
+    [sources.high, 2],
+  ]);
   let pendingRestore = null;
   let pendingSeek = null;
+  let stallTimer = null;
+  let qualityLimit = 2;
 
   function preferredSource() {
-    if (!connection) return sources.standard;
+    if (!connection) return sources.low;
     if (connection.saveData) return sources.low;
     if (Number.isFinite(connection.downlink)) {
       if (connection.downlink < 2.5) return sources.low;
@@ -31,11 +38,41 @@
     return sources.standard;
   }
 
+  function clearStallTimer() {
+    if (stallTimer !== null) {
+      clearTimeout(stallTimer);
+      stallTimer = null;
+    }
+  }
+
+  function downgradeAfterStall() {
+    clearStallTimer();
+    const stalledAt = video.currentTime;
+    stallTimer = window.setTimeout(() => {
+      stallTimer = null;
+      if (
+        video.paused ||
+        video.currentTime - stalledAt >= 0.25
+      ) return;
+
+      const currentSource = new URL(video.currentSrc, document.baseURI).pathname.slice(1);
+      const currentRank = qualityRank.get(currentSource);
+      if (currentRank === undefined || currentRank === 0) return;
+      qualityLimit = currentRank - 1;
+      updateSource();
+    }, 5000);
+  }
+
   function updateSource() {
-    const source = preferredSource();
+    const requestedSource = preferredSource();
+    const requestedRank = qualityRank.get(requestedSource) ?? 0;
+    const source = [...qualityRank.entries()]
+      .find(([, rank]) => rank === Math.min(requestedRank, qualityLimit))?.[0]
+      ?? sources.low;
     const nextSource = new URL(source, document.baseURI).href;
     if (video.currentSrc === nextSource || video.src === nextSource) return;
 
+    clearStallTimer();
     const time = video.currentTime;
     const resume = !video.paused;
     if (pendingRestore) video.removeEventListener("loadedmetadata", pendingRestore);
@@ -103,6 +140,9 @@
   document.addEventListener("fullscreenchange", onFullscreenChange);
   document.addEventListener("webkitfullscreenchange", onFullscreenChange);
   video.addEventListener("webkitendfullscreen", background);
+  video.addEventListener("waiting", downgradeAfterStall);
+  video.addEventListener("stalled", downgradeAfterStall);
+  video.addEventListener("playing", clearStallTimer);
 
   button.hidden = false;
   still.addEventListener("change", background);
