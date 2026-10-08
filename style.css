@@ -49,15 +49,31 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 .hero img, .hero video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; max-height: 72vh;
                          object-fit: cover; background: var(--sky-deep); }
 .hero::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
+  content: ""; position: absolute; inset: 0 0 64px; pointer-events: none;
   background: linear-gradient(to bottom, transparent 50%, var(--sky) 100%);
 }
-/* Over the gradient, clear of the title that overlaps the hero's foot */
-.hero .hero-watch { position: absolute; z-index: 1; right: 24px; bottom: 72px; }
-.hero video:fullscreen { max-height: none; object-fit: contain; background: #000; }
-/* A phone's hero is short: the button goes small, top right, off the title */
+.hero-watch-row { position: relative; z-index: 2; display: flex; justify-content: flex-end;
+                  align-items: center; min-height: 64px; padding: 8px 24px; background: var(--sky); }
+.trailer-quality { position: absolute; z-index: 2; top: 24px; right: 24px;
+                   display: flex; align-items: center; gap: 8px; padding: 6px 10px;
+                   border: 1px solid var(--line); border-radius: 8px;
+                   color: var(--ink); background: rgb(28 24 48 / 90%); font-size: 13px; }
+.trailer-quality[hidden] { display: none; }
+.trailer-quality select { max-width: 100%; padding: 4px 6px; border: 1px solid var(--line);
+                          border-radius: 4px; color: var(--ink); background: var(--well);
+                          font: inherit; }
+.trailer-quality select:focus-visible { outline: 2px solid var(--flame-hot); outline-offset: 2px; }
+.hero:fullscreen, .hero:-webkit-full-screen { position: fixed; inset: 0; display: block;
+  width: 100vw; height: 100vh; max-height: none; background: #000; }
+.hero:fullscreen::after, .hero:-webkit-full-screen::after { display: none; }
+.hero:fullscreen video, .hero:-webkit-full-screen video { width: 100%; height: 100%;
+  max-height: none; aspect-ratio: auto; object-fit: contain; background: #000; }
+.hero:fullscreen .hero-watch-row, .hero:-webkit-full-screen .hero-watch-row { display: none; }
+/* A phone's hero is short: keep the watch action compact. */
 @media (max-width: 640px) {
-  .hero .hero-watch { top: 12px; right: 16px; bottom: auto; padding: 6px 12px; font-size: 12px; }
+  .hero::after { bottom: 56px; }
+  .hero-watch-row { min-height: 56px; padding: 8px 16px; }
+  .hero .hero-watch { padding: 6px 12px; font-size: 12px; }
   .hero .hero-watch .gi { width: 24px; height: 24px; }
 }
 
@@ -72,7 +88,7 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 .page-hero .wrap { position: relative; z-index: 1; padding-block: 120px 40px; }
 
 /* The menu's NEW WORLDS title, drawn live (title-logo.js) */
-.title { position: relative; z-index: 1; margin-top: -48px; text-align: center; }
+.title { position: relative; z-index: 1; text-align: center; }
 .title canvas { display: block; margin: 0 auto; image-rendering: pixelated; max-width: 100%; }
 
 /* Call-to-action buttons */
@@ -260,7 +276,6 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 
 @media (max-width: 760px) {
-  .title { margin-top: -20px; }
   .features { gap: 48px; margin: 48px auto; }
   .feature { grid-template-columns: 1fr; gap: 16px; }
   .feature.flip .shot { order: 0; }
