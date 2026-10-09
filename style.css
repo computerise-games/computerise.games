@@ -13,6 +13,7 @@
   --flame-hot: #ffc266;
   --ocean: #3fa3f0;
   --steam: #1b2838;
+  --itch: #b84444;
   --cream: #f2e3c0;
   --cream-ink: #3b3024;
   --cream-muted: #7a6446;
@@ -98,6 +99,9 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 }
 .btn.steam { background: var(--steam); border-color: #2a475e; }
 .btn.steam:hover, .btn.steam:focus-visible { border-color: #66c0f4; }
+/* itch.io's own coral, darkened so the cream label holds its contrast. */
+.btn.itch { background: var(--itch); border-color: #a83c3c; }
+.btn.itch:hover, .btn.itch:focus-visible { background: #d24c4c; border-color: #ff8a8a; }
 .btn small { display: block; font: 400 11px/1.2 Inter, system-ui, sans-serif; letter-spacing: 0; opacity: .8; }
 .icon { width: 20px; height: 20px; flex: none; background: currentColor;
         -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
@@ -230,6 +234,7 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 .release-pair .release { display: flex; flex-direction: column; align-items: flex-start; margin: 0; }
 .release-pair .pair-btn { margin-top: auto; align-self: stretch; justify-content: center;
                           min-height: 64px; padding: 12px 20px; font-size: 18px; }
+.release-pair .pair-btn + .pair-btn { margin-top: 10px; }
 .release-pair p { margin-bottom: 18px; }
 @media (max-width: 760px) { .release-pair { grid-template-columns: 1fr; } }
 .release-lede { font-weight: 600; }
