@@ -63,6 +63,14 @@ def inline(text):
     return LINK.sub(link, out)
 
 
+def plain(text):
+    """A line of notes with its markup dropped - [text](url) to its text,
+    no ** or ` - for where a link can't go: an alt text, or the home page's
+    banner, which is one link already."""
+    text = re.sub(r"\[([^\]]+)\]\([^)\s]+\)", r"\1", text)
+    return re.sub(r"\*\*|`", "", text)
+
+
 def parse_notes(path):
     title, lede, groups = "", [], []
     for raw in open(path, encoding="utf-8"):
@@ -107,7 +115,7 @@ def card(version, day, notes_path):
     ]
     banner = f"img/banner-v{version}.png"
     if not is_patch(version) and os.path.exists(os.path.join(SITE, banner)):
-        alt = f"{title}, v{version}" + (f": {lede}" if lede else "")
+        alt = f"{title}, v{version}" + (f": {plain(lede)}" if lede else "")
         lines += [
             f'      <img class="release-art" src="{banner}" width="1920" height="720" loading="lazy"',
             f'           alt="{html.escape(alt)}">',
@@ -148,7 +156,9 @@ def landing(version, day, notes_path, has_card):
     if not is_patch(version) and notes_path:
         title, lede, _ = parse_notes(notes_path)
         block = sub_once(r'(?<=<span class="rb-title pixel">)[^<]*', inline(title), block)
-        block = sub_once(r'(?<=<span class="rb-sub">)[^<]*', inline(lede), block)
+        block = sub_once(
+            r'(?<=<span class="rb-sub">)[^<]*', html.escape(plain(lede), quote=False), block
+        )
         art = f"img/banner-v{version}-art.webp"
         small = f"img/banner-v{version}-art-960.webp"
         if os.path.exists(os.path.join(SITE, art)):
