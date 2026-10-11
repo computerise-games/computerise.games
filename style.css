@@ -46,7 +46,7 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 
 /* Hero: the trailer, muted and looping (trailer.js) */
 .hero { position: relative; }
-.hero img, .hero video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; max-height: 72vh;
+.hero > img, .hero > video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; max-height: 72vh;
                          object-fit: cover; background: var(--sky-deep); }
 .hero::after {
   content: ""; position: absolute; inset: 0 0 64px; pointer-events: none;
