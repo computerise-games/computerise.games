@@ -148,6 +148,8 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
                          margin: 0 0 10px; font-size: 22px; line-height: 1.2; color: var(--flame); }
 .spread h2 { justify-content: center; }
 .hicon { width: 48px; height: 48px; image-rendering: pixelated; flex: none; }
+/* A 3D render, not pixel art: scaled smoothly. */
+.hicon.render { image-rendering: auto; }
 .feature p { margin: 0; }
 
 /* Full-width spreads for the menu panels: text above, the still edge to
