@@ -45,8 +45,9 @@ One-time setup:
   the high-quality source to rebuild the two smaller files. `trailer.js` picks
   a source from the browser's Network Information estimate and switches while
   preserving playback position when the estimate changes; browsers without
-  that API use the 1080p30 encode. "Watch the trailer" opens the video itself
-  in fullscreen with the browser's native controls. The old hero still,
+  that API use the 1080p30 encode. "Watch the trailer" plays the YouTube
+  upload (https://www.youtube.com/watch?v=rt1wH3pTDBU, its ID in index.html's
+  `data-youtube`) in a dialog, through the privacy-enhanced embed. The old hero still,
   `terra-launch-transit`, is its poster and the gallery page's header now.
 - `img/*.webp`: full-size and 960px copies of stills from the game repo's
   `docs/media/screenshots/`. `og.jpg` is the 1200x675 link-preview image.

@@ -1,6 +1,6 @@
 // The landing page's trailer: muted and looping as the hero's background,
 // with quality picked from the browser's network estimate. "Watch the trailer"
-// plays it fullscreen from the start with sound and native video controls.
+// plays the YouTube upload in a dialog.
 (function () {
   const video = document.getElementById("trailer");
   const button = document.getElementById("trailer-full");
@@ -109,37 +109,42 @@
     }
   }
 
-  function fullscreenElement() {
-    return document.fullscreenElement || document.webkitFullscreenElement || null;
+  // The full trailer is the YouTube upload, played in a dialog over the page
+  // (the privacy-enhanced embed, so YouTube loads nothing until it's opened).
+  // Without JavaScript the button is a plain link to the video.
+  const dialog = document.createElement("dialog");
+  dialog.className = "trailer-dialog";
+  dialog.setAttribute("aria-label", "New Worlds trailer");
+  dialog.innerHTML =
+    '<button class="btn trailer-close" type="button" aria-label="Close the trailer">\u2715</button>' +
+    '<div class="trailer-frame"></div>';
+  document.body.appendChild(dialog);
+  const frame = dialog.querySelector(".trailer-frame");
+
+  function closeTrailer() {
+    frame.replaceChildren();
+    if (dialog.open) dialog.close();
+    background();
   }
 
-  function enterFullscreen(element) {
-    if (element.requestFullscreen) return element.requestFullscreen();
-    if (element.webkitRequestFullscreen) return element.webkitRequestFullscreen();
-    // iOS Safari: only the video itself can go fullscreen.
-    if (video.webkitEnterFullscreen) return video.webkitEnterFullscreen();
-    return Promise.reject(new Error("no fullscreen"));
-  }
-
-  button.addEventListener("click", () => {
-    button.hidden = true;
-    video.currentTime = 0;
-    video.loop = false;
-    video.muted = false;
-    video.controls = true;
-    updateSource();
-    video.play().catch(() => {});
-    Promise.resolve(enterFullscreen(video)).catch(() => {
-      button.hidden = false;
-    });
+  button.addEventListener("click", (event) => {
+    if (typeof dialog.showModal !== "function") return; // follow the link
+    event.preventDefault();
+    video.pause();
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + button.dataset.youtube +
+      "?autoplay=1&rel=0&playsinline=1";
+    iframe.title = "New Worlds trailer";
+    iframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+    iframe.allowFullscreen = true;
+    frame.replaceChildren(iframe);
+    dialog.showModal();
   });
-
-  function onFullscreenChange() {
-    if (!fullscreenElement()) background();
-  }
-  document.addEventListener("fullscreenchange", onFullscreenChange);
-  document.addEventListener("webkitfullscreenchange", onFullscreenChange);
-  video.addEventListener("webkitendfullscreen", background);
+  dialog.querySelector(".trailer-close").addEventListener("click", closeTrailer);
+  dialog.addEventListener("close", closeTrailer);
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) closeTrailer();
+  });
   video.addEventListener("waiting", downgradeAfterStall);
   video.addEventListener("stalled", downgradeAfterStall);
   video.addEventListener("playing", clearStallTimer);
