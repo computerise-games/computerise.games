@@ -101,6 +101,8 @@ nav a:hover, nav a:focus-visible, nav a[aria-current="page"] { color: var(--ink)
 }
 .btn.steam { background: var(--steam); border-color: #2a475e; }
 .btn.steam:hover, .btn.steam:focus-visible { border-color: #66c0f4; }
+/* Not a link yet - a label until the store page exists, as the game greys its own out. */
+.btn.soon, .btn.soon:hover { opacity: .55; cursor: default; border-color: #2a475e; transform: none; box-shadow: none; }
 /* The game's green PrimaryButton (ui/theme.tres), its accept/go style. */
 .btn.accept { color: var(--accept-ink); background: var(--accept); border-color: var(--accept-edge); }
 .btn.accept:hover, .btn.accept:focus-visible { color: #0f2e1a; background: #82e5a0; border-color: #449e65; }
