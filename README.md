@@ -50,7 +50,7 @@ One-time setup:
   `data-youtube`) in a dialog, through the privacy-enhanced embed. The old hero still,
   `terra-launch-transit`, is its poster and the gallery page's header now.
 - `img/*.webp`: full-size and 960px copies of stills from the game repo's
-  `docs/media/screenshots/`. `og.jpg` is the 1200x675 link-preview image.
+  `docs/media/screenshots/`. `og-card.jpg` is the 1200x630 link-preview card every page shares (the logo and the itch headline over the v0.3.0 banner art); `og.jpg` is the old bare screenshot it replaced.
 - `img/title/`: the main menu's title layers (`ui/title_logo/`), Terra's
   loading loop sheet and the player ship sprite, drawn live by
   `title-logo.js` - a port of the game's `ui/title_logo.gd`. Re-copy them
