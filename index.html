@@ -19,12 +19,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 <header>
   <div class="wrap">
     <a class="brand pixel" href="./">computerise<span>.</span></a>
+    <ul class="social" aria-label="computerise elsewhere">
+      <li><a href="https://computerise.itch.io/newworlds/devlog" aria-label="itch.io devlog" title="itch.io devlog"><span class="icon" style="--src: url(img/social/itchdotio.svg)"></span></a></li>
+      <li><a href="https://www.youtube.com/@ComputeriseGames" aria-label="YouTube" title="YouTube"><span class="icon" style="--src: url(img/social/youtube.svg)"></span></a></li>
+      <li><a href="https://www.reddit.com/user/computerise/" aria-label="Reddit" title="Reddit"><span class="icon" style="--src: url(img/social/reddit.svg)"></span></a></li>
+      <li><a href="https://www.tiktok.com/@computerise02" aria-label="TikTok" title="TikTok"><span class="icon" style="--src: url(img/social/tiktok.svg)"></span></a></li>
+    </ul>
     <nav aria-label="Main">
       <ul class="pixel">
         <li><a href="#new-worlds" aria-current="page">New Worlds</a></li>
@@ -301,17 +307,20 @@
     </div>
   </section>
 
-  <!-- An href of "#follow" is a placeholder: point it at the real profile once it exists. -->
+  <!-- The same profiles as the header's icons. Discord, Bluesky and X are
+       left out until their accounts exist:
+        <a class="btn" href="#follow"><span class="icon" style="--src: url(img/social/discord.svg)"></span>Discord</a>
+        <a class="btn" href="#follow"><span class="icon" style="--src: url(img/social/bluesky.svg)"></span>Bluesky</a>
+        <a class="btn" href="#follow"><span class="icon" style="--src: url(img/social/x.svg)"></span>X</a>
+  -->
   <section class="band" id="follow">
     <div class="wrap">
       <h2 class="pixel">Follow</h2>
       <p class="muted">News, devlogs and release dates.</p>
       <div class="follow">
-        <a class="btn" href="#follow"><span class="icon" style="--src: url(img/social/discord.svg)"></span>Discord</a>
-        <a class="btn" href="#follow"><span class="icon" style="--src: url(img/social/bluesky.svg)"></span>Bluesky</a>
-        <a class="btn" href="#follow"><span class="icon" style="--src: url(img/social/x.svg)"></span>X</a>
+        <a class="btn" href="https://computerise.itch.io/newworlds/devlog"><span class="icon" style="--src: url(img/social/itchdotio.svg)"></span>itch.io devlog</a>
         <a class="btn" href="https://www.youtube.com/@ComputeriseGames"><span class="icon" style="--src: url(img/social/youtube.svg)"></span>YouTube</a>
-        <a class="btn" href="#follow"><span class="icon" style="--src: url(img/social/reddit.svg)"></span>Reddit</a>
+        <a class="btn" href="https://www.reddit.com/user/computerise/"><span class="icon" style="--src: url(img/social/reddit.svg)"></span>Reddit</a>
         <a class="btn" href="https://www.tiktok.com/@computerise02"><span class="icon" style="--src: url(img/social/tiktok.svg)"></span>TikTok</a>
       </div>
     </div>

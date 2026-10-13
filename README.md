@@ -31,7 +31,9 @@ One-time setup:
 - **Steam:** both pages link to
   `https://store.steampowered.com/app/STEAM_APP_ID/New_Worlds/`; replace
   `STEAM_APP_ID` once the Coming Soon page exists.
-- **Social:** the Follow buttons in `index.html` point at `#follow`.
+- **Social:** the header's icons (every page) and `index.html`'s Follow buttons
+  link the itch.io devlog, YouTube, Reddit and TikTok. Discord, Bluesky and X
+  are commented out in the Follow section until those accounts exist.
 - **Releases:** `releases.html`'s table is written by hand; add a row per
   release.
 

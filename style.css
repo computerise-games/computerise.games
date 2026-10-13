@@ -41,6 +41,12 @@ img { max-width: 100%; }
 
 /* Header: the studio name, with the nav bar beneath it */
 header { border-bottom: 1px solid var(--line); }
+header .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 12px; }
+header nav { grid-column: 1 / -1; }
+.social { display: flex; gap: 2px; margin: 0; padding: 12px 0 0; list-style: none; }
+.social a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 6px; color: var(--muted); }
+.social a:hover, .social a:focus-visible { color: var(--ink); background: var(--well); }
+.social .icon { width: 22px; height: 22px; }
 .brand { display: inline-block; padding: 22px 0 10px; font-size: 22px; color: var(--ink); text-decoration: none; }
 .brand span { color: var(--flame); }
 nav ul { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; padding: 0 0 14px; list-style: none; }
@@ -293,4 +299,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   html { scroll-behavior: auto; }
   .btn { transition: none; }
   .btn:hover, .btn:focus-visible { transform: none; }
+}
+
+/* The header's social icons beside the brand on the narrowest phones. */
+@media (max-width: 420px) {
+  .brand { font-size: 18px; }
+  .social a { width: 40px; }
 }
