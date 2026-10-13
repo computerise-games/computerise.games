@@ -307,6 +307,6 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 /* The header's social icons beside the brand on the narrowest phones. */
 @media (max-width: 420px) {
-  .brand { font-size: 15px; }
-  .social a, .social button { width: 36px; }
+  .brand { font-size: 14px; }
+  .social a, .social button { width: 32px; }
 }
