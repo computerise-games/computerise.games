@@ -44,9 +44,13 @@ header { border-bottom: 1px solid var(--line); }
 header .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 12px; }
 header nav { grid-column: 1 / -1; }
 .social { display: flex; gap: 2px; margin: 0; padding: 12px 0 0; list-style: none; }
-.social a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 6px; color: var(--muted); }
-.social a:hover, .social a:focus-visible { color: var(--ink); background: var(--well); }
+.social a, .social button { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 6px; color: var(--muted);
+                              position: relative; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; }
+.social a:hover, .social a:focus-visible, .social button:hover, .social button:focus-visible { color: var(--ink); background: var(--well); }
 .social .icon { width: 22px; height: 22px; }
+.social button[data-said]::after { content: attr(data-said); position: absolute; top: 100%; right: 0; margin-top: 6px; z-index: 5;
+                                  white-space: nowrap; padding: 6px 10px; border-radius: 4px; font-size: 13px;
+                                  color: var(--ink); background: var(--well); border: 1px solid var(--line); }
 .brand { display: inline-block; padding: 22px 0 10px; font-size: 22px; color: var(--ink); text-decoration: none; }
 .brand span { color: var(--flame); }
 nav ul { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; padding: 0 0 14px; list-style: none; }
@@ -303,6 +307,6 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 /* The header's social icons beside the brand on the narrowest phones. */
 @media (max-width: 420px) {
-  .brand { font-size: 18px; }
-  .social a { width: 40px; }
+  .brand { font-size: 15px; }
+  .social a, .social button { width: 36px; }
 }
